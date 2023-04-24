@@ -16,24 +16,30 @@ h1 {
   color: #001b44;
 }
 
-.container {
+/*.container {
   width: 80vw;
   margin: 25px auto;
-}
-.box {
+}*/
+
+.content {
   display: block;
-  float: left;
-  width: 31%;
-  height: 200px;
+  position:relative;
+/*float: left;*/
+  width: 300px;
+  height: 250px;
   margin: 1%;
   cursor: pointer;
   object-fit: cover;
   border-radius: 8px;
-  background-color: #093145;
+  background-color: whitesmoke;
   text-align: center;
   line-height: 200px;
   font-size: 150px;
   color: whitesmoke;
+}
+
+.box {
+    background-color: #093145;
 }
 
 @media (max-width: 740px) {
