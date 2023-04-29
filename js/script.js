@@ -1,12 +1,4 @@
-//var container = document.querySelector(".container");
-
-//container.addEventListener("click", function(event) {
-  //var element = event.target;
-
-  // TODO: Complete function
-  //console.log(event.target.getAttribute("Data-state"));
-//});
-
+//Variable List
 var intro =[];
 var startQuiz = document.querySelector(".startButton");
 var questionCount = 0;
@@ -31,8 +23,9 @@ var interval;
 var saveHighScores = [];
 
 
+//Initial Screen setup
 function introScreen() {
-    intro.push('The following Quiz will challenge your knowledge about Geography, you will have 60 seconds to answer Ten (10) questions, every "Correct" answer will give you 5 pts but each "Wrong" answer will reduce 5 seconds from the clock, click the Start button when ready... Have Fun...!!!. At the end you can register your score.');
+    intro.push('The following Quiz will challenge your knowledge about Geography, you will have sixty (60) seconds to answer Ten (10) questions, every "Correct" answer will give you 5 pts but each "Wrong" answer will reduce 5 seconds from the clock, click the Start button when ready... Have Fun...!!!. At the end you can register your score.');
 
     head.textContent = "Quiz about Geography";
     mainText.textContent = intro[0];
@@ -49,6 +42,7 @@ function introScreen() {
 
 }
 
+// Review list of questions and publish each question
 function populateQuestions() {
     
 
@@ -59,12 +53,17 @@ function populateQuestions() {
             clock = document.querySelector(".counter");
             if (count === 0){
                 if (clock.textContent !== " "){
-                clock.textContent = "You're out of time!";
+                message.textContent = "You're out of time!";
                 clearInterval(interval);
                 setTimeout(showscore, 1000);
                 }
             } else {
-                    clock.textContent = count;
+                    if (count <= 10 && clock.textContent !== " ") {
+                        clock.setAttribute("id", "redcounter") // This turns the counter on red when 10sec left
+                    } else {
+                        clock.setAttribute("id", "");
+                    }
+                    clock.textContent = "Time: "+count;
                     count--;
                 }
       }, 1000);
@@ -354,6 +353,7 @@ function populateQuestions() {
         console.log(options);   
 }
 
+// Review User answer and update the score
 function evaluate(event) {
 
     console.log(event);
@@ -375,10 +375,12 @@ function evaluate(event) {
     setTimeout(populateQuestions, 500);
 }
 
+// after finishing the quiz show the score obtained
 function showscore() {
     
 
     clearInterval(interval);
+    message.textContent = "";
     mainText.textContent = "";
     clock.textContent = "";
     document.body.children[3].removeChild(answerItem0);
@@ -396,18 +398,20 @@ function showscore() {
 
 }
 
+// Save the score the score board
 function saveScore() {
     var newScore;
 
-    newScore = inputBox.value + " - " + score;
+    newScore = score + " - " + inputBox.value;
     console.log(newScore);
     saveHighScores.push(newScore);
     inputBox.value = "";
-
-    setTimeout(showhighScores, 500);    
-    return saveHighScores;
+    arraysort(); // Allows the score board to be displayed descending
+    console.log(saveHighScores);
+    setTimeout(showhighScores, 500);
 }
 
+// Display the score board
 function showhighScores() {
 
     eInitial.style.visibility = "hidden";
@@ -475,6 +479,7 @@ function showhighScores() {
     clearScores.addEventListener("click", clearScoreArray);
 }
 
+// controls the actions to return to the initial screen
 function returnBack() {
 
     cleaningVar();
@@ -486,11 +491,13 @@ function returnBack() {
 
 }
 
+// allow to review the score board
 function viewScores() {
     //cleaningVar();
     showhighScores();
 }
 
+// routine to clear variable after each Quiz iteration
 function cleaningVar () {
 
     for (var x =0; x < saveHighScores.length; x++) {
@@ -516,6 +523,7 @@ function cleaningVar () {
 
 }
 
+// Allow to clear teh score board
 function clearScoreArray () {
 
     for (var x =0; x < saveHighScores.length; x++) {
@@ -545,6 +553,21 @@ function clearScoreArray () {
 
 }
 
+function arraysort() {
+
+    for (var x = 0; x < saveHighScores.length; x++) {
+        for (var y = 0; y < saveHighScores.length; y++) {
+            if (saveHighScores[x] > saveHighScores[y]) {
+                var x1 = saveHighScores[x];
+                var y1 = saveHighScores[y];
+
+                saveHighScores[x] = y1;
+                saveHighScores[y] = x1;
+
+            }
+        }
+    }
+}
 introScreen();
 
 
