@@ -545,7 +545,7 @@ function clearScoreArray () {
         }
     }
     
-    for (var x =0; x < saveHighScores.length; x++) {
+    for (var y = 0; y <= saveHighScores.length; y++) {
         saveHighScores.shift();
     }
 
