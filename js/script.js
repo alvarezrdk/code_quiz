@@ -7,27 +7,52 @@
   //console.log(event.target.getAttribute("Data-state"));
 //});
 
-var intro = ["Conding Quiz Paragraph"];
+var intro =[];
 var startQuiz = document.querySelector(".startButton");
 var questionCount = 0;
-var answerItem0 = document.createElement("button");
-var answerItem1 = document.createElement("button");
-var answerItem2 = document.createElement("button");
-var answerItem3 = document.createElement("button");
-var answerItem4 = document.createElement("button");
+var answerItem0 = document.createElement("p");
+var answerItem1 = document.createElement("p");
+var answerItem2 = document.createElement("p");
+var answerItem3 = document.createElement("p");
+var answerItem4 = document.createElement("p");
 var mainText = document.querySelector(".mainText");
 var message = document.querySelector("#message");
+var eInitial = document.querySelector(".eInitial");
+var inputBox = document.querySelector(".inputBox");
+var recordButton = document.querySelector(".recordButton");
+var goBack = document.querySelector(".goBack");
+var viewScore = document.querySelector(".viewScores");
+var clearScores = document.querySelector(".clearScores");
+var head = document.querySelector(".head");
 var clock;
-var count = 20;
+var count = 60;
 var score = 0;
+var interval;
+var saveHighScores = [];
 
 
 function introScreen() {
+    intro.push('The following Quiz will challenge your knowledge about Geography, you will have 60 seconds to answer Ten (10) questions, every "Correct" answer will give you 5 pts but each "Wrong" answer will reduce 5 seconds from the clock, click the Start button when ready... Have Fun...!!!. At the end you can register your score.');
+
+    head.textContent = "Quiz about Geography";
     mainText.textContent = intro[0];
+    startQuiz.style.visibility = "visible";
+    eInitial.style.visibility = "hidden";
+    inputBox.style.visibility = "hidden";
+    recordButton.style.visibility = "hidden";
+    clearScores.style.visibility = "hidden";
+    goBack.style.visibility = "hidden";
+    viewScore.style.visibility = "visible";
+
+    startQuiz.addEventListener("click", populateQuestions);
+    viewScore.addEventListener("click", viewScores);
+
 }
 
 function populateQuestions() {
-    var interval;
+    
+
+    viewScore.style.visibility = "hidden";
 
     if (questionCount === 0) {
         interval = setInterval(function(){       
@@ -36,7 +61,7 @@ function populateQuestions() {
                 if (clock.textContent !== " "){
                 clock.textContent = "You're out of time!";
                 clearInterval(interval);
-                setTimeout(showscore, 500);
+                setTimeout(showscore, 1000);
                 }
             } else {
                     clock.textContent = count;
@@ -48,116 +73,215 @@ function populateQuestions() {
     var mainText = document.querySelector(".mainText");
     var questionList = [    
         {
-            question: "Question One",
+            question: "How Many states border the Gulf of Mexico?",
             answer: [
-                {   text: "A",
+                {   text: "3",
                     correct: "false"
                 },
                 
-                {   text: "B",
+                {   text: "7",
                     correct: "false"
                 },
                 
-                {   text: "C",
+                {   text: "5",
                     correct: "true",
                 },
                 
-                {   text: "D",
+                {   text: "2",
                     correct: "false"
                 }
             ],
         },    
         {  
-            question: "Question Two",
+            question: "Which is the longest River in US?",
             answer: [
-                {   text: "E",
+                {   text: "Colorado River",
                     correct: "false"
                 },
                 
-                {   text: "F",
+                {   text: "Missouri River",
                     correct: "true"
                 },
                 
-                {   text: "G",
+                {   text: "Rio Grande",
                     correct: "false"
                 },
                 
-                {   text: "H",
+                {   text: "Amazon River",
                     correct: "false"
                 }
             ],
         },
         {  
-            question: "Question Three",
+            question: "What is the tallest mountain in the US?",
             answer: [
-                {   text: "I",
-                    correct: "false"
-                },
-                
-                {   text: "J",
+                {   text: "Denali",
                     correct: "true"
                 },
                 
-                {   text: "K",
+                {   text: "Mount Sandford",
                     correct: "false"
                 },
                 
-                {   text: "L",
+                {   text: "Mount Bona",
+                    correct: "false"
+                },
+                
+                {   text: "Mount Everest",
                     correct: "false"
                 }
             ],
         },
         {  
-            question: "Question Four",
+            question: "What was the last state to join the US territory?",
             answer: [
-                {   text: "M",
-                    correct: "false"
-                },
-                
-                {   text: "N",
+                {   text: "Hawaii",
                     correct: "true"
                 },
                 
-                {   text: "O",
+                {   text: "Arizona",
                     correct: "false"
                 },
                 
-                {   text: "P",
+                {   text: "Alaska",
+                    correct: "false"
+                },
+                
+                {   text: "New Mexico",
                     correct: "false"
                 }
             ],
         },
         {  
-            question: "Question Five",
+            question: "Which US state has the longest coastline?",
             answer: [
-                {   text: "Q",
+                {   text: "California",
                     correct: "false"
                 },
                 
-                {   text: "R",
+                {   text: "Maine",
+                    correct: "false"
+                },
+                
+                {   text: "Florida",
+                    correct: "false"
+                },
+                
+                {   text: "Alaska",
+                    correct: "true"
+                }
+            ],
+        },
+        {  
+            question: "What state is the least populated in the US?",
+            answer: [
+                {   text: "Florida",
+                    correct: "false"
+                },
+                
+                {   text: "North Dakota",
+                    correct: "false"
+                },
+                
+                {   text: "Wyoming",
                     correct: "true"
                 },
                 
-                {   text: "S",
-                    correct: "false"
-                },
-                
-                {   text: "T",
+                {   text: "Idaho",
                     correct: "false"
                 }
             ],
         },
+        {  
+            question: "Which Country is South Americas's second largest?",
+            answer: [
+                {   text: "Colombia",
+                    correct: "false"
+                },
+                
+                {   text: "Paraguay",
+                    correct: "false"
+                },
+                
+                {   text: "Chile",
+                    correct: "false"
+                },
+                
+                {   text: "Argentina",
+                    correct: "true"
+                }
+            ],
+        },
+        {  
+            question: "Which Central America Country does not have and Atlantic Coastline?",
+            answer: [
+                {   text: "Panama",
+                    correct: "false"
+                },
+                
+                {   text: "El Salvador",
+                    correct: "true"
+                },
+                
+                {   text: "Costa Rica",
+                    correct: "false"
+                },
+                
+                {   text: "Belize",
+                    correct: "false"
+                }
+            ],
+        },
+        {  
+            question: "What is the name of the world's largest river",
+            answer: [
+                {   text: "Congo",
+                    correct: "false"
+                },
+                
+                {   text: "Amazon",
+                    correct: "true"
+                },
+                
+                {   text: "Rio Negro",
+                    correct: "false"
+                },
+                
+                {   text: "Nile",
+                    correct: "false"
+                }
+            ],
+        },
+        {  
+            question: "From which country did Panama declare independence?",
+            answer: [
+                {   text: "United States",
+                    correct: "false"
+                },
+                
+                {   text: "Colombia",
+                    correct: "true"
+                },
+                
+                {   text: "Spain",
+                    correct: "false"
+                },
+                
+                {   text: "Mexico",
+                    correct: "false"
+                }
+            ],
+        },
+        
     ];
 
     startQuiz.style.visibility ='hidden';
 
-    if (answerItem0.firstChild !== null) {
-        answerItem0.removeChild(answerItem0.firstChild);
-        answerItem1.removeChild(answerItem1.firstChild);
-        answerItem2.removeChild(answerItem2.firstChild);
-        answerItem3.removeChild(answerItem3.firstChild);
+        answerItem0.textContent = "";
+        answerItem1.textContent = "";
+        answerItem2.textContent = "";
+        answerItem3.textContent = "";
         message.textContent = "";
-    }
 
     if (questionCount === questionList.length){
         count = 0;
@@ -180,7 +304,7 @@ function populateQuestions() {
                     answerItem0.setAttribute('class', "options");
                     answerItem0.setAttribute('id', questionList[questionCount].answer[x].correct);
                     console.log(answerItem0);
-                    document.body.children[2].append(answerItem0);
+                    document.body.children[3].append(answerItem0);
                 break;
 
                 case 1:
@@ -188,7 +312,7 @@ function populateQuestions() {
                     answerItem1.setAttribute('class', "options");
                     answerItem1.setAttribute('id', questionList[questionCount].answer[x].correct);
                     console.log(answerItem1);
-                    document.body.children[2].append(answerItem1);
+                    document.body.children[3].append(answerItem1);
                 break;
             
                 case 2:
@@ -196,7 +320,7 @@ function populateQuestions() {
                     answerItem2.setAttribute('class', "options");
                     answerItem2.setAttribute('id', questionList[questionCount].answer[x].correct);
                     console.log(answerItem2);
-                    document.body.children[2].append(answerItem2);
+                    document.body.children[3].append(answerItem2);
                 break;
 
                 case 3:
@@ -204,7 +328,7 @@ function populateQuestions() {
                     answerItem3.setAttribute('class', "options");
                     answerItem3.setAttribute('id', questionList[questionCount].answer[x].correct);
                     console.log(answerItem3);
-                    document.body.children[2].append(answerItem3);
+                    document.body.children[3].append(answerItem3);
                 break;
 
 
@@ -213,13 +337,19 @@ function populateQuestions() {
                     answerItem4.setAttribute('class', "options");
                     answerItem4.setAttribute('id', questionList[questionCount].answer[x].correct);
                     console.log(answerItem4);
-                    document.body.children[2].append(answerItem4);
+                    document.body.children[3].append(answerItem4);
                 break;
             }
                     
         }
 
     }
+
+        answerItem0.addEventListener("click", evaluate);
+        answerItem1.addEventListener("click", evaluate);
+        answerItem2.addEventListener("click", evaluate);
+        answerItem3.addEventListener("click", evaluate);
+        
         options = document.querySelector(".options");
         console.log(options);   
 }
@@ -236,6 +366,7 @@ function evaluate(event) {
         console.log(score);
     }   else {
         message.textContent = "Wrong Answer...!!!";
+        count = count - 5;
     }
     console.log(message.textContent);
 
@@ -245,24 +376,179 @@ function evaluate(event) {
 }
 
 function showscore() {
+    
 
+    clearInterval(interval);
     mainText.textContent = "";
     clock.textContent = "";
-    document.body.children[2].removeChild(answerItem0);
-    document.body.children[2].removeChild(answerItem1);
-    document.body.children[2].removeChild(answerItem2);
-    document.body.children[2].removeChild(answerItem3);
+    document.body.children[3].removeChild(answerItem0);
+    document.body.children[3].removeChild(answerItem1);
+    document.body.children[3].removeChild(answerItem2);
+    document.body.children[3].removeChild(answerItem3);
     //document.body.children[2].removeChild(answerItem4);
+    
+    head.textContent = "All Done...!!!"
+    eInitial.style.visibility = "visible";
+    inputBox.style.visibility = "visible";
+    recordButton.style.visibility = "visible";
+    mainText.textContent = "Your total score is "+score;
+    recordButton.addEventListener("click", saveScore);
+
+}
+
+function saveScore() {
+    var newScore;
+
+    newScore = inputBox.value + " - " + score;
+    console.log(newScore);
+    saveHighScores.push(newScore);
+    inputBox.value = "";
+
+    setTimeout(showhighScores, 500);    
+    return saveHighScores;
+}
+
+function showhighScores() {
+
+    eInitial.style.visibility = "hidden";
+    inputBox.style.visibility = "hidden";
+    recordButton.style.visibility = "hidden";
+    head.textContent ="";
+    mainText.textContent = "High Scores";
+    clearScores.style.visibility = "visible";
+    goBack.style.visibility = "visible";
+    startQuiz.style.visibility = "hidden";
+    viewScore.style.visibility = "hidden";
+
+        console.log(saveHighScores);
+
+        answerItem0.textContent = "";
+        answerItem1.textContent = "";
+        answerItem2.textContent = "";
+        answerItem3.textContent = "";
+
+    for (var x = 0; x < saveHighScores.length; x++) {
+
+        var node = document.createTextNode(saveHighScores[x]);
+
+        switch (x) {
+
+            case 0:
+                answerItem0.appendChild(node);
+                answerItem0.setAttribute('class', "scores");
+                console.log(answerItem0);
+                document.body.children[3].append(answerItem0);
+            break;
+
+            case 1:
+                answerItem1.appendChild(node);
+                answerItem1.setAttribute('class', "scores");
+                console.log(answerItem1);
+                document.body.children[3].append(answerItem1);
+            break;
+        
+            case 2:
+                answerItem2.appendChild(node);
+                answerItem2.setAttribute('class', "scores");
+                console.log(answerItem2);
+                document.body.children[3].append(answerItem2);
+            break;
+
+            case 3:
+                answerItem3.appendChild(node);
+                answerItem3.setAttribute('class', "scores");
+                console.log(answerItem3);
+                document.body.children[3].append(answerItem3);
+            break;
+
+
+            case 4:
+                answerItem4.appendChild(node);
+                answerItem4.setAttribute('class', "scores");
+                console.log(answerItem4);
+                document.body.children[3].append(answerItem4);
+            break;
+        }
+
+    }
+    goBack.addEventListener("click", returnBack);
+    clearScores.addEventListener("click", clearScoreArray);
+}
+
+function returnBack() {
+
+    cleaningVar();
+
+    questionCount = 0;
+    count = 60;
+    score = 0;
+    introScreen();
+
+}
+
+function viewScores() {
+    //cleaningVar();
+    showhighScores();
+}
+
+function cleaningVar () {
+
+    for (var x =0; x < saveHighScores.length; x++) {
+
+        if (x === 0) {
+            document.body.children[3].removeChild(answerItem0);
+        }
+        
+        if (x === 1) {
+            document.body.children[3].removeChild(answerItem1);
+        }
+
+        if (x === 2) {
+            document.body.children[3].removeChild(answerItem2);
+        }
+
+        if (x === 3) {
+            document.body.children[3].removeChild(answerItem3);
+        }
+    }
+
+    
+
+}
+
+function clearScoreArray () {
+
+    for (var x =0; x < saveHighScores.length; x++) {
+
+        if (x === 0) {
+            document.body.children[3].removeChild(answerItem0);
+        }
+        
+        if (x === 1) {
+            document.body.children[3].removeChild(answerItem1);
+        }
+
+        if (x === 2) {
+            document.body.children[3].removeChild(answerItem2);
+        }
+
+        if (x === 3) {
+            document.body.children[3].removeChild(answerItem3);
+        }
+    }
+    
+    for (var x =0; x < saveHighScores.length; x++) {
+        saveHighScores.shift();
+    }
+
+    showhighScores();
 
 }
 
 introScreen();
 
-startQuiz.addEventListener("click", populateQuestions);
-answerItem0.addEventListener("click", evaluate);
-answerItem1.addEventListener("click", evaluate);
-answerItem2.addEventListener("click", evaluate);
-answerItem3.addEventListener("click", evaluate);
+
+
 
 
 
