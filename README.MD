@@ -20,7 +20,7 @@ It does not requires installation.
  https://alvarezrdk.github.io/code_quiz/
 
 ## Screenshot of the Application
- ![image](https://user-images.githubusercontent.com/128987959/235281243-eb14fb7b-42fa-436c-b8b1-03d1b3de7d3e.png)
+![image](https://user-images.githubusercontent.com/128987959/235286375-6f40c3df-00e5-4efc-b926-18e25e341ab1.png)
 
 
 ## License
