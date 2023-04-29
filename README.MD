@@ -1,7 +1,7 @@
 # Knowledge Quiz
 
 ## Description
-This application challenge users knowledge around geography concepts. It allows to get points for every question anwered correctly and get time pnalties for each worng answer.
+This application challenge users knowledge around geography concepts. It allows to get points for every question anwered correctly and get time penalties for each worng answer.
 
 The web application use jave routines that reuse HTML tags and generates new tags as nedded. At the end of the Quiz the end user can record the score and be part of a score board.
 
